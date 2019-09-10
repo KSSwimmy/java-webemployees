@@ -3,9 +3,9 @@ package com.lambdaschool.webemployees;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Employee
-{
+{                                                 //AtomicLong is in charge of assigning the id and responsible for making sure that one of them gets assigned an id 1 at a time. person A and person B gets an id if given at the same time.
     private static final AtomicLong counter = new AtomicLong();
-    private long id;
+    private long id; // long is the base data type and Long is the class type - more numbers
     private String fname;
     private String lname;
     private double salary;
@@ -24,7 +24,7 @@ public class Employee
         this.healthPlanID = healthPlanID;
     }
 
-    public Employee (Employee toClone)
+    public Employee(Employee toClone)
     {
         this.id = toClone.getId();
         this.fname = toClone.getFname();
@@ -35,7 +35,11 @@ public class Employee
         this.healthPlanID = toClone.getHealthPlanID();
     }
 
-    public long getId()
+    public Employee() //
+    {
+    }
+
+    public long getId() // you always want to get the id never set it.
     {
         return id;
     }
@@ -43,11 +47,6 @@ public class Employee
     public String getFname()
     {
         return fname;
-    }
-
-    public String getName()
-    {
-        return fname + " " + lname;
     }
 
     public void setFname(String fname)
@@ -63,6 +62,11 @@ public class Employee
     public void setLname(String lname)
     {
         this.lname = lname;
+    }
+
+    public String getName() // was created manually to return the 1st name and last name
+    {
+        return fname + " " + lname;
     }
 
     public double getSalary()
@@ -104,4 +108,13 @@ public class Employee
     {
         this.healthPlanID = healthPlanID;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Employee{" + "id=" + id + ", fname='" + fname + '\'' + ", lname='" + lname + '\'' + ", salary=" + salary + ", has401k=" + has401k + ", companyID=" + companyID + ", healthPlanID=" + healthPlanID + '}';
+    }
 }
+
+// static allows the id counter to be shared across objects
+// final is very similar to a const. Once it's assigned a value it cannot be changed. We can change the object but can't create a new object in it's place
